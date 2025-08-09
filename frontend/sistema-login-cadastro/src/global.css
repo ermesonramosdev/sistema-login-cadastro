@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+    padding: 30px 40px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}

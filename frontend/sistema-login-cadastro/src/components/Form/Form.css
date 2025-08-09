@@ -1,0 +1,46 @@
+.form-catalog .container-form-catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-catalog .container-form-catalog label {
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+}
+
+.form-catalog .container-form-catalog input[type="text"],
+.form-catalog .container-form-catalog input[type="password"] {
+    padding: 10px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-catalog .container-form-catalog input[type="text"]:focus,
+.form-catalog .container-form-catalog input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-catalog button {
+    margin-top: 40px;
+    width: 100%;
+    padding: 12px 0;
+    background-color: #007bff;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-catalog button:hover {
+    background-color: #0056b3;
+}
+
