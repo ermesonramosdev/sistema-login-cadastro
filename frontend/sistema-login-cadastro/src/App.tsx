@@ -1,13 +1,13 @@
 import "./global.css";
-import { Login } from "./pages/Login/Login";
-//import { Register } from "./pages/Register/Register";
+//import { Login } from "./pages/Login/Login";
+import { Register } from "./pages/Register/Register";
 
 function App() {
 
   return (
     <div className="container">
-      {/*<Register />*/}
-      <Login />
+      <Register />
+      {/*<Login />*/}
     </div>
   )
 }

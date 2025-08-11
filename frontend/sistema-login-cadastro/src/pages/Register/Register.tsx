@@ -6,9 +6,9 @@ export const Register: React.FC = () => {
             <h1 style={{ textAlign: "center" }}>Cadastro</h1>
             <Form
                 form={[
-                    { label: "Nome: ", type: "text" },
-                    { label: "Email: ", type: "text" },
-                    { label: "Senha: ", type: "password" },
+                    { label: "Nome: ", type: "text", name: "name" },
+                    { label: "Email: ", type: "text", name: "email" },
+                    { label: "Senha: ", type: "password", name: "password" },
                 ]}
             />
         </>
