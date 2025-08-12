@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./Form.css";
 
 type FieldForm = {
@@ -30,9 +31,22 @@ export const Form: React.FC<LoginProps> = ({ form }) => {
     }
 
     //Captura mudanças nos inputs
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log("Dados enviados:", formData);
+        
+        try {
+            const response = await axios.post('http://localhost/sistema-login-cadastro/backend/user-register/user-register.php', formData);
+
+            console.log(response.data);
+
+            console.log("Dados que estão sendo enviados: ", formData);
+            setFormData({name: "", email: "", password: ""});
+                
+            } catch(error) {
+                console.error("Não deu para enviar os dados: ", error);
+            }
+
+        
     }
 
     return(
