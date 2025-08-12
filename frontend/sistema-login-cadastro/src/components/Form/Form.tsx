@@ -45,8 +45,6 @@ export const Form: React.FC<LoginProps> = ({ form }) => {
             } catch(error) {
                 console.error("Não deu para enviar os dados: ", error);
             }
-
-        
     }
 
     return(
