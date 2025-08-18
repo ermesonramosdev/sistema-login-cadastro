@@ -13,4 +13,30 @@
 
     $data = json_decode(file_get_contents("php://input"), true);
 
+    if(!empty($data['name']) && !empty($data['email']) && !empty($data['password'])) {
+
+        try {
+            $check = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+
+            if($check->fetchColumn() > 0) {
+                echo "Este email já esta cadastrado";
+                exit;
+            }
+
+            $stmt = $pdo->prepare("
+                INSERT INTO users (nome, email, senha) 
+                VALUES (:nome, :email, :senha)
+            ");
+            $stmt->execute([
+                ':nome' => $data['name'],
+                ':email' => $data['email'],
+                ':senha' => $data['password']
+            ]);
+
+            echo "Usuário cadastrado com sucesso";
+        } catch(error) {
+            echo "Usuário não cadastro por: ", error;
+        }
+    }
+    
    

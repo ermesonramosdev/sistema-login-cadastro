@@ -48,14 +48,15 @@ export const Form: React.FC<LoginProps> = ({ form }) => {
     }
 
     return(
+        
         <form className="form-catalog" onSubmit={handleSubmit}>
             {form.map((field, index) => (
                 <div key={index} className="container-form-catalog">
                     <label htmlFor={field.label}>{field.label}</label>
-                    <input 
+                    <input
                         id={field.label}
                         type={field.type}
-                        name={field.name} 
+                        name={field.name}
                         value={formData[field.name as keyof typeof formData]}
                         onChange={handleChange}
                     />
@@ -63,5 +64,6 @@ export const Form: React.FC<LoginProps> = ({ form }) => {
             ))}
             <button type="submit">Cadastrar</button>
         </form>
+       
     );
 }
