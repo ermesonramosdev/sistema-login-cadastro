@@ -11,32 +11,18 @@
         exit();
     }
 
-    $data = json_decode(file_get_contents("php://input"), true);
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
 
-    if(!empty($data['name']) && !empty($data['email']) && !empty($data['password'])) {
+    if(empty($data)) {
+        $stmf = $pdo->query("SELECT * FROM users");
+        $users = $stmf->fetchAll(PDO::FETCH_ASSOC);
 
-        try {
-            $check = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
-
-            if($check->fetchColumn() > 0) {
-                echo "Este email já esta cadastrado";
-                exit;
-            }
-
-            $stmt = $pdo->prepare("
-                INSERT INTO users (nome, email, senha) 
-                VALUES (:nome, :email, :senha)
-            ");
-            $stmt->execute([
-                ':nome' => $data['name'],
-                ':email' => $data['email'],
-                ':senha' => $data['password']
-            ]);
-
-            echo "Usuário cadastrado com sucesso";
-        } catch(error) {
-            echo "Usuário não cadastro por: ", error;
+        foreach($users as $user) {
+            echo "Nome: " . $user['nome'] . "<hr>";
+            echo "Email: " . $user['email'] . "<hr>";
+            echo "Email: " . $user['senha'] . "<hr>";
         }
+    } else {
+        echo "Não pegou nada esse karai";
     }
-    
-   

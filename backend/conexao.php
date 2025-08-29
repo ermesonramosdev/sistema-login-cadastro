@@ -1,12 +1,11 @@
-<?php
-    $host = "localhost";
+<?php 
+    $localhost = "localhost";
     $dbname = "bd_sistema_login_cadastro";
-    $username = "root";
+    $user = "root";
     $password = "";
 
     try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Erro de conexão: " . $e->getMessage());
+        $pdo = new PDO("mysql:host=$localhost;dbname=$dbname", $user, $password);
+    } catch(PDOException $e) {
+        echo "Deu erro por causa disso: $e";
     }
