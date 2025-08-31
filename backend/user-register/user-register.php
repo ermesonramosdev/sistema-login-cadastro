@@ -12,17 +12,25 @@
     }
 
     $json = file_get_contents("php://input");
-    $data = json_decode($json, true);
 
-    if(empty($data)) {
-        $stmf = $pdo->query("SELECT * FROM users");
-        $users = $stmf->fetchAll(PDO::FETCH_ASSOC);
+    $datas = json_decode($json);
 
-        foreach($users as $user) {
-            echo "Nome: " . $user['nome'] . "<hr>";
-            echo "Email: " . $user['email'] . "<hr>";
-            echo "Email: " . $user['senha'] . "<hr>";
+    if(!empty($datas)) {
+        try {
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare("INSERT INTO users (nome, email, senha) VALUES (:name, :email, :password)");
+            $stmt->execute([
+                ':name' => $datas->name,
+                ':email' => $datas->email,
+                ':password' => $datas->password
+            ]);
+            $pdo->commit(); //Salva as alterações que foram colocadas no banco de dados
+            echo "Usuário cadastrado com sucesso ";
+        } catch(Exception $e) {
+            $pdo->rollback(); //Encerrar tudo se der errado no banco de dados
+            echo "Erro ao cadastra: ". $e->getMessage();
         }
+
     } else {
-        echo "Não pegou nada esse karai";
+        echo "Os dados não estão sendo salvo corretamente no back-end para enviar para o banco de dados";
     }
