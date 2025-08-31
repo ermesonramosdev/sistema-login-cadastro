@@ -7,8 +7,8 @@ export const Login: React.FC = () => {
             <h1 style={{ textAlign: "center" }}>Login</h1>
                 <Form 
                     form={[
-                        { label: "Email", type: "text", name: "Login" },
-                        { label: "Senha", type: "password", name: "Login" }
+                        { label: "Email", type: "text", name: "email" },
+                        { label: "Senha", type: "password", name: "password" }
                         
                     ]}
                 />

@@ -33,18 +33,35 @@ export const Form: React.FC<LoginProps> = ({ form }) => {
     //Captura mudanças nos inputs
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+
+        const isRegister = form.some((field) => field.label == "Nome: ");
+
         
-        try {
-            const response = await axios.post('http://localhost/sistema-login-cadastro/backend/user-register/user-register.php', formData);
+        if(isRegister) {
+            try {
+                const response = await axios.post('http://localhost/sistema-login-cadastro/backend/user-register/user-register.php', formData);
 
-            console.log(response.data);
+                console.log(response.data);
 
-            console.log("Dados que estão sendo enviados: ", formData);
-            setFormData({name: "", email: "", password: ""});
-                
+                console.log("Dados que estão sendo enviados: ", formData);
+                setFormData({name: "", email: "", password: ""});
+                    
             } catch(error) {
                 console.error("Não deu para enviar os dados: ", error);
             }
+        } else {
+            try {
+                const response = await axios.post('http://localhost/sistema-login-cadastro/backend/user-validation/user-validation.php', formData);
+
+                console.log(response.data);
+
+                console.log("Dados que estão sendo enviados: ", formData);
+                setFormData({name: "", email: "", password: ""});
+                    
+            } catch(error) {
+                console.error("Não deu para enviar os dados: ", error);
+            }
+        }
     }
 
     return(
